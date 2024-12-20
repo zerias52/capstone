@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+About
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="about">
+    <img src="{% static 'img/Tony.png' %}">
+    <h1>About Me</h1>
+</div>
+{% endblock %}
