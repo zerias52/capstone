@@ -1,0 +1,17 @@
+.login {
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #d2d6d8;
+    border-radius: 6px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.login h1 {
+    color: #2B3305;
+    text-align: center;
+    margin-bottom: 22px;
+}

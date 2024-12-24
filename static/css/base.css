@@ -13,6 +13,10 @@ nav {
     color: white;
 }
 
+nav .dropdown-menu{
+    left: -45px !important;
+}
+
 main {
     min-height: calc(100vh - 104px);
 }
