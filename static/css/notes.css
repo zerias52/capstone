@@ -1,0 +1,96 @@
+/*body {*/
+/*    background: skyblue;*/
+/*    color: white;*/
+/*}*/
+
+.list-note {
+  padding: 20px;
+}
+
+.list-note h1 {
+  text-align: center;
+  color: #333;
+  font-family: Lobster,cursive;
+  flex: 1;
+}
+
+.list-note .note {
+  width: 300px;
+  height: 250px;
+  border-radius: 4px;
+  margin: 10px;
+  padding: 12px;
+  display: inline-block;
+  border: 1px solid #d3d3df;
+  background-color: #eff1f3;
+  vertical-align: top;
+  position: relative;
+}
+
+.list-note .note h4 {
+  margin-bottom: 0;
+  color: darkcyan;
+  font-weight: 300;
+}
+
+.list-note .note label {
+  margin-top: 0;
+  color: #a7a6a6;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.list-note .note p {
+  margin-top: 12px;
+}
+
+.list-note .note a {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+}
+
+.list-note .head {
+  display: flex;
+  align-items: center;
+}
+
+.list-note .head a {
+  margin-left: auto;
+}
+
+.detail-note .body {
+  padding: 20px;
+  border: 1px solid #d3d3df;
+  border-radius: 6px;
+  background-color: #eff1f3;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+}
+
+.detail-note .body h1 {
+  color: #106b89;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+.detail-note .body label {
+  font-weight: 300;
+  color: #787b7d;
+  font-size: 14px;
+}
+
+.detail-note .body .note-text {
+  margin-top: 12px;
+  background-color: #dce0e4;
+  border-radius: 4px;
+  border: 1px solid #ccd2d9;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.detail-note .body .controls {
+  text-align: right;
+}
