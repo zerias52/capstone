@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Posts - List
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/posts.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="header">
+        <h1>Your Generated Posts</h1>
+    </div>
+
+    {# Generated Post List #}
+    {% for post in post_list %}
+        <div class="card border-secondary mb-3" style="max-width: 20rem;">
+          <div class="card-header">{{ post.created_on.date }}</div>
+          <div class="card-body">
+            <h4 class="card-title">Generated for {{ post.get_platform_display }}</h4>
+            <p class="card-text">{{ post.content|truncatechars:100 }}</p>
+          </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
