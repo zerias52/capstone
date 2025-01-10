@@ -1,6 +1,11 @@
 from django.urls import path
-from .views import PostListView
+from . import views
+
+app_name = 'generator'
 
 urlpatterns = [
-    path('list/', PostListView.as_view(), name = 'post_list')
+    path('', views.PostListView.as_view(), name='post-list'),
+    path('new/', views.PostCreateView.as_view(), name='post-create'),
+    path('<int:pk>/', views.PostDetailView.as_view(), name='post-detail'),
+    path('<int:pk>/delete/', views.PostDeleteView.as_view(), name='post-delete'),
 ]

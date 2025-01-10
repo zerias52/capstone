@@ -1,0 +1,10 @@
+    /* Custom styling for radio buttons */
+    .form-check-input[type="radio"] {
+        margin-right: 0.5em;
+    }
+
+    /* Ensure radio buttons are displayed inline */
+    #id_post_length div {
+        display: inline-block;
+        margin-right: 2em;
+    }
