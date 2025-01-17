@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.safestring import mark_safe
 
 # Create your models here.
 class GeneratedPost(models.Model):
@@ -37,6 +38,17 @@ class GeneratedPost(models.Model):
         ('L', 'Long'),
     ]
     post_length = models.CharField(max_length=1, choices=LENGTH_CHOICES)
+
+    ai_response = models.JSONField(null=True, blank=True)
+
+    class Meta:
+        ordering = ['created_on']
+
+    def parse_claude_response(self):
+        """Format the content for display with line breaks and emojis preserved"""
+        if not self.content:
+            return ''
+        return mark_safe(self.content.replace('\n', '<br>'))
 
     def __str__(self):
         return f"{self.get_platform_display()} post by {self.user.username} on {self.created_on.date()}"

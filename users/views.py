@@ -5,6 +5,7 @@ from django.contrib.auth import logout
 from django.views.generic.edit import CreateView
 from .forms import SignupForm
 from .models import Profile
+from .mixins import RedirectAuthenticatedUserMixin
 
 """
 Class-based views:
@@ -20,13 +21,13 @@ LoginView   = login
 
 
 # Create your views here.
-class UserLoginView(LoginView):
+class UserLoginView(RedirectAuthenticatedUserMixin, LoginView):
     template_name = "users/login.html"
 
     def get_success_url(self):
         return reverse("home")
 
-class SignUpView(CreateView):
+class SignUpView(RedirectAuthenticatedUserMixin, CreateView):
     template_name = "users/signup.html"
     form_class = SignupForm
     success_url = reverse_lazy('login')

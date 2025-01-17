@@ -40,8 +40,6 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
         return super().form_valid(form)
 
-        return super().form_valid(form)
-
 class PostDetailView(LoginRequiredMixin, DetailView):
     model = GeneratedPost
     template_name = 'generator/post_detail.html'
