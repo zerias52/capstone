@@ -20,7 +20,7 @@ Delete Post
                         <div class="card-body">
                             <h6 class="card-subtitle mb-2 text-muted">
                                 {% if post %}
-                                    {{ post.get_platform_display }} post from {{ post.created_on|date:"F d, Y" }}
+                                    {{ post.get_platform_display }} post from {{ post.created_on.date }}
                                 {% else %}
                                     No post data available
                                 {% endif %}
