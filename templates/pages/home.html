@@ -10,7 +10,20 @@
 {% block content %}
     <div class="home">
 
-        <h1>Welcome to Django!</h1>
+        <h1>Welcome to SocialGen!</h1>
+        <img src="{% static 'img/ai.webp' %}" alt="">
+        <p>At SocialGen, we empower creators and businesses to craft compelling social media content across multiple
+            platforms with the power of AI. Our advanced post generator understands the unique requirements of LinkedIn,
+            Twitter, Instagram, and Facebook, ensuring your message resonates with your target audience while maintaining
+            your brand's distinctive voice. Whether you're aiming for professional thought leadership, casual engagement,
+            or inspirational content, our tool adapts to your needs.</p>
+        <p>Getting started is simple and intuitive. Just tell us your target platform, content theme, preferred tone,
+            and audience, and our AI-powered generator will create platform-optimized posts that hit the mark every time.
+            Track your content history, refine your messaging, and save time on social media content creation—all from one
+            convenient dashboard. With our built-in understanding of platform-specific best practices, including character
+            limits, formatting conventions, and hashtag usage, you can focus on growing your social media presence while we
+            handle the content optimization.</p>
+        <a href="{% url 'generator:post-create' %}" class="btn btn-danger">Get Started</a>
 
     </div>
 

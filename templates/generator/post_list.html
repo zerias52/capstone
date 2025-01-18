@@ -13,9 +13,9 @@ Posts - List
 <div class="container">
     <div class="header">
         <h1>Your Generated Posts</h1>
-        <a href="{% url "generator:post-create" %}" class="btn btn-danger">Generate Post</a>
     </div>
 
+    <div class="cards-container">
     {# Generated Post List #}
     {% for post in post_list %}
         <a href="{% url 'generator:post-detail' post.pk %}" class="text-decoration-none">
@@ -28,6 +28,9 @@ Posts - List
             </div>
         </a>
     {% endfor %}
+    </div>
+
+    <a href="{% url "generator:post-create" %}" class="btn btn-danger">Generate Post</a>
 
     {% if is_paginated %}
 <nav aria-label="Page navigation" class="mt-4">

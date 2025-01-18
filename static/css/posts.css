@@ -1,21 +1,75 @@
+/* posts.css */
+
 .container {
-    margin-bottom: 20px;
-}
-.card {
-    transition: transform 0.2s ease;
+    padding: 2rem 1rem;
 }
 
-a:hover .card {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
+/* Header styling */
 .header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
-.header a {
-    text-align: center;
+.header h1 {
+    margin: 0;
+}
+
+/* Cards container styling */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 0 auto 2rem auto;  /* Center the container horizontally */
+    max-width: 900px;  /* Limit width to ensure proper card sizing */
+}
+
+.cards-container > a {
+    flex: 0 1 calc(50% - 0.5rem);
+    min-width: 250px;
+}
+
+/* Card styling */
+.card {
+    height: 100%;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-text {
+    flex-grow: 1;
+}
+
+/* Generate Post button styling */
+.btn-danger {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+/* Pagination adjustments */
+.pagination {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .cards-container > a {
+        flex: 0 1 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .card {
+        max-width: none;
+    }
 }
