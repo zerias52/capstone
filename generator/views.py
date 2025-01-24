@@ -59,3 +59,42 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 
     def get_queryset(self):
         return GeneratedPost.objects.filter(user=self.request.user)
+
+
+class PostCloneView(LoginRequiredMixin, CreateView):
+    model = GeneratedPost
+    form_class = GeneratePostForm
+    template_name = 'generator/post_clone.html'
+    success_url = reverse_lazy('generator:post-list')
+
+    def get_initial(self):
+        # Get the original post
+        original_post = GeneratedPost.objects.get(pk=self.kwargs['pk'])
+        # Pre-populate the form with original post's data
+        return {
+            'platform': original_post.platform,
+            'content_topic': original_post.content_topic,
+            'brand_voice': original_post.brand_voice,
+            'target_audience': original_post.target_audience,
+            'call_to_action': original_post.call_to_action,
+            'key_points': original_post.key_points,
+            'post_length': original_post.post_length,
+        }
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+
+        generated_content = generate_social_post(
+            platform=form.instance.get_platform_display(),
+            content_topic=form.instance.content_topic,
+            brand_voice=form.instance.get_brand_voice_display(),
+            target_audience=form.instance.target_audience,
+            call_to_action=form.instance.call_to_action,
+            key_points=form.instance.key_points,
+            post_length=form.instance.get_post_length_display()
+        )
+
+        form.instance.content = generated_content
+        self.object = form.save()
+
+        return redirect('generator:post-detail', pk=self.object.pk)

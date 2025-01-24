@@ -70,6 +70,9 @@ Generated Post Details
                             <a href="{% url 'generator:post-list' %}" class="btn btn-secondary">Back to List</a>
                         </div>
                         <div>
+                            <a href="{% url 'generator:post-clone' pk=post.pk %}" class="btn btn-success mb-2">
+                                Modify
+                            </a>
                             <a href="{% url 'generator:post-delete' post.pk %}" class="btn btn-danger">Delete</a>
                         </div>
                     </div>
