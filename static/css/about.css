@@ -1,21 +1,128 @@
+/* about.css */
+
 .about {
-    padding-top: 30px;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+    padding: 3rem 0;
 }
 
-.about h4 {
-    color: #6a6b6c;
-    margin-bottom: 0;
-    margin-top: 12px;
+/* Company Overview Section */
+.section-company h1 {
+    color: #fff;
+    margin-bottom: 2rem;
 }
 
-.about h1 {
-    color: darkcyan;
+.company-image {
+    max-width: 800px;
+    margin: 0 auto 2rem;
 }
 
-.about img {
-    max-width: 100%;
+.company-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Mission Section */
+.section-mission .card {
+    transition: transform 0.2s ease-in-out;
+}
+
+.section-mission .card:hover {
+    transform: translateY(-5px);
+}
+
+.section-mission .card-title {
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.section-mission .fas {
+    font-size: 1.5rem;
+}
+
+/* Features Section */
+.section-features h2 {
+    color: #fff;
+    margin-bottom: 2rem;
+}
+
+.feature-card {
+    transition: transform 0.2s ease-in-out;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    color: #dc3545;
+    margin-bottom: 1rem;
+}
+
+.feature-card .card-title {
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+/* CTA Section */
+.section-cta {
+    margin-top: 4rem;
+    padding: 3rem 0;
+}
+
+.section-cta h2 {
+    color: #fff;
+    margin-bottom: 2rem;
+}
+
+.section-cta .btn {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.section-cta .btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about {
+        padding: 2rem 0;
+    }
+
+    .section-company h1 {
+        font-size: 2.5rem;
+    }
+
+    .section-mission .card-title {
+        font-size: 1.25rem;
+    }
+
+    .feature-icon {
+        font-size: 2rem;
+    }
+
+    .section-cta {
+        margin-top: 2rem;
+        padding: 2rem 0;
+    }
+
+    .section-cta .btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .section-company h1 {
+        font-size: 2rem;
+    }
+
+    .feature-card {
+        margin-bottom: 1rem;
+    }
 }

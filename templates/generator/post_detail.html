@@ -1,79 +1,108 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}
-Generated Post Details
-{% endblock %}
+{% block title %}Post Details{% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/posts.css' %}">
+<link rel="stylesheet" href="{% static 'css/detail.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
-                    <h3 class="mb-0">{{ post.get_platform_display }} Post</h3>
-                    <small>Created on {{ post.created_on.date }}</small>
+<div class="post-detail-container">
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <!-- Back Navigation -->
+                <div class="mb-4">
+                    <a href="{% url 'generator:post-list' %}" class="btn btn-outline-light">
+                        <i class="fas fa-arrow-left me-2"></i>Back to Posts
+                    </a>
                 </div>
-                <div class="card-body">
-                    <!-- Content Section -->
-                    <h4 class="card-title">Generated Content</h4>
-                    <div class="card border-secondary mb-4">
-                        <div class="card-body post-content">
-                            <p class="card-text">{{ post.parse_claude_response }}</p>
-                        </div>
-                    </div>
 
-                    <!-- Post Parameters -->
-                    <h4 class="card-title">Post Parameters</h4>
-                    <div class="card border-secondary mb-4">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <strong>Content Topic:</strong>
-                                <p class="mb-0">{{ post.content_topic }}</p>
-                            </li>
-                            <li class="list-group-item">
-                                <strong>Brand Voice:</strong>
-                                <p class="mb-0">{{ post.get_brand_voice_display }}</p>
-                            </li>
-                            <li class="list-group-item">
-                                <strong>Target Audience:</strong>
-                                <p class="mb-0">{{ post.target_audience }}</p>
-                            </li>
-                            {% if post.call_to_action %}
-                            <li class="list-group-item">
-                                <strong>Call to Action:</strong>
-                                <p class="mb-0">{{ post.call_to_action }}</p>
-                            </li>
-                            {% endif %}
-                            <li class="list-group-item">
-                                <strong>Key Points:</strong>
-                                {% for point in post.key_points.splitlines %}
-                                    {% if point %}  <!-- This will skip empty lines -->
-                                        <p class="mb-1">• {{ point }}</p>
-                                    {% endif %}
-                                {% endfor %}
-                            </li>
-                            <li class="list-group-item">
-                                <strong>Post Length:</strong>
-                                <p class="mb-0">{{ post.get_post_length_display }}</p>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Action Buttons -->
-                    <div class="d-flex justify-content-between">
-                        <div>
-                            <a href="{% url 'generator:post-list' %}" class="btn btn-secondary">Back to List</a>
+                <!-- Post Header -->
+                <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <span class="platform-badge badge bg-danger me-3">
+                                <i class="fas fa-{{ post.get_platform_display|lower }} me-2"></i>
+                                {{ post.get_platform_display }}
+                            </span>
+                            <span class="text-muted">Created on {{ post.created_on|date:"F d, Y" }}</span>
                         </div>
-                        <div>
-                            <a href="{% url 'generator:post-clone' pk=post.pk %}" class="btn btn-success mb-2">
-                                Modify
+                        <div class="actions">
+                            <a href="{% url 'generator:post-clone' post.pk %}" class="btn btn-outline-light btn-sm me-2">
+                                <i class="fas fa-clone me-2"></i>Clone
                             </a>
-                            <a href="{% url 'generator:post-delete' post.pk %}" class="btn btn-danger">Delete</a>
+                            <a href="{% url 'generator:post-delete' post.pk %}" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash-alt me-2"></i>Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Generated Content -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h4 class="mb-0">Generated Content</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="generated-content">
+                            {{ post.parse_claude_response }}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Post Parameters -->
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="mb-0">Generation Parameters</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="parameter-group">
+                                    <label class="fw-bold">Content Topic</label>
+                                    <p>{{ post.content_topic }}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="parameter-group">
+                                    <label class="fw-bold">Target Audience</label>
+                                    <p>{{ post.target_audience }}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="parameter-group">
+                                    <label class="fw-bold">Brand Voice</label>
+                                    <p>{{ post.get_brand_voice_display }}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="parameter-group">
+                                    <label class="fw-bold">Post Length</label>
+                                    <p>{{ post.get_post_length_display }}</p>
+                                </div>
+                            </div>
+                            {% if post.call_to_action %}
+                            <div class="col-12">
+                                <div class="parameter-group">
+                                    <label class="fw-bold">Call to Action</label>
+                                    <p>{{ post.call_to_action }}</p>
+                                </div>
+                            </div>
+                            {% endif %}
+                            <div class="col-12">
+                                <div class="parameter-group">
+                                    <label class="fw-bold">Key Points</label>
+                                    <div class="key-points">
+                                        {% for point in post.key_points.splitlines %}
+                                            {% if point %}
+                                                <p class="mb-2">• {{ point }}</p>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

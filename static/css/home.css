@@ -1,55 +1,97 @@
 /* home.css */
 
 .home {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 2rem 1rem;
-    text-align: center;
 }
 
-.home h1 {
+/* Hero Section */
+.hero {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.hero h1 {
+    color: #fff;
     margin-bottom: 2rem;
 }
 
-.home img {
-    width: 70%;
+.hero-image {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-image img {
+    width: 100%;
     height: auto;
-    margin: 2rem 0;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
-.home p {
+/* Content Section */
+.content-section {
+    margin-bottom: 3rem;
+}
+
+.introduction .lead {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: #e9ecef;
+}
+
+.features p {
     font-size: 1.1rem;
-    line-height: 1.6;
+    line-height: 1.7;
+    color: #ced4da;
     margin-bottom: 1.5rem;
-    text-align: left;
 }
 
-.home .btn {
+/* Call to Action */
+.cta {
+    margin-top: 3rem;
+}
+
+.cta .btn {
+    padding: 1rem 2rem;
     font-size: 1.2rem;
-    padding: 0.75rem 2rem;
-    margin-top: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s ease-in-out;
 }
 
-/* Responsive adjustments */
+.cta .btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
     .home {
         padding: 1rem;
     }
 
-    .home h1 {
-        font-size: 2rem;
+    .hero h1 {
+        font-size: 2.5rem;
         margin-bottom: 1.5rem;
     }
 
-    .home p {
-        font-size: 1rem;
-        margin-bottom: 1rem;
+    .introduction .lead {
+        font-size: 1.15rem;
     }
 
-    .home .btn {
+    .features p {
+        font-size: 1rem;
+    }
+
+    .cta .btn {
+        padding: 0.75rem 1.5rem;
         font-size: 1.1rem;
-        padding: 0.5rem 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero h1 {
+        font-size: 2rem;
     }
 }

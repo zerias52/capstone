@@ -1,18 +1,121 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}
-About
-{% endblock %}
+{% block title %}About Us{% endblock %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
 {% endblock %}
-
 
 {% block content %}
 <div class="about">
-    <img src="{% static 'img/Tony.png' %}">
-    <h1>About Me</h1>
+    <div class="container">
+        <!-- Company Overview Section -->
+        <section class="section-company mb-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h1 class="display-4 mb-4">About SocialGen</h1>
+                    <div class="company-image mb-4">
+                        <img src="{% static 'img/ai.webp' %}" alt="SocialGen AI Technology" class="img-fluid rounded">
+                    </div>
+                    <p class="lead mb-4">
+                        SocialGen is at the forefront of AI-powered social media content creation,
+                        helping businesses and creators craft engaging content across multiple platforms.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission Section -->
+        <section class="section-mission mb-5">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h2 class="card-title mb-3">
+                                <i class="fas fa-bullseye text-danger me-2"></i>Our Mission
+                            </h2>
+                            <p class="card-text">
+                                Our mission is to democratize high-quality social media content creation
+                                through advanced AI technology, making it accessible to businesses and
+                                creators of all sizes.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h2 class="card-title mb-3">
+                                <i class="fas fa-chart-line text-danger me-2"></i>Our Vision
+                            </h2>
+                            <p class="card-text">
+                                We envision a future where creating engaging, platform-optimized social
+                                media content is effortless, allowing creators to focus on strategy and
+                                community building.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section-features mb-5">
+            <h2 class="text-center mb-4">Why Choose SocialGen?</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-robot feature-icon mb-3"></i>
+                            <h3 class="card-title h4">Advanced AI Technology</h3>
+                            <p class="card-text">
+                                Powered by state-of-the-art AI models to generate high-quality,
+                                contextually relevant content.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-sync feature-icon mb-3"></i>
+                            <h3 class="card-title h4">Platform Optimization</h3>
+                            <p class="card-text">
+                                Content tailored for each social media platform's unique requirements
+                                and best practices.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-clock feature-icon mb-3"></i>
+                            <h3 class="card-title h4">Time Efficiency</h3>
+                            <p class="card-text">
+                                Generate quality content in seconds, saving hours of writing and
+                                formatting time.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section-cta text-center">
+            <h2 class="mb-4">Ready to Transform Your Social Media Content?</h2>
+            {% if user.is_authenticated %}
+                <a href="{% url 'generator:post-create' %}" class="btn btn-danger btn-lg">
+                    <i class="fas fa-plus me-2"></i>Generate Your First Post
+                </a>
+            {% else %}
+                <a href="{% url 'signup' %}" class="btn btn-danger btn-lg">
+                    <i class="fas fa-user-plus me-2"></i>Get Started Today
+                </a>
+            {% endif %}
+        </section>
+    </div>
 </div>
 {% endblock %}

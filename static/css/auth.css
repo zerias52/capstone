@@ -1,0 +1,120 @@
+/* auth.css */
+
+.auth-container {
+    min-height: calc(100vh - 100px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 400px;
+    background-color: #2c3034;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Header Styles */
+.auth-header i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.auth-header h1 {
+    color: #fff;
+    font-size: 1.75rem;
+    font-weight: 500;
+}
+
+/* Form Styles */
+.auth-form label {
+    color: #ced4da;
+    font-weight: 500;
+}
+
+.auth-form .form-control {
+    background-color: #343a40;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 0.75rem 1rem;
+}
+
+.auth-form .form-control:focus {
+    background-color: #3c4147;
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}
+
+.auth-form .form-text {
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+/* Terms Agreement */
+.terms-agreement {
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+.terms-agreement a {
+    color: #dc3545;
+    text-decoration: none;
+}
+
+.terms-agreement a:hover {
+    text-decoration: underline;
+}
+
+/* Buttons */
+.auth-form .btn {
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Footer Links */
+.auth-footer {
+    color: #6c757d;
+}
+
+.auth-footer a {
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Alert Messages */
+.alert {
+    border: none;
+    border-radius: 6px;
+}
+
+.invalid-feedback {
+    font-size: 0.875rem;
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+    .auth-card {
+        padding: 1.5rem;
+    }
+
+    .auth-header i {
+        font-size: 2rem;
+    }
+
+    .auth-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .auth-form .btn {
+        padding: 0.625rem 1rem;
+    }
+}
