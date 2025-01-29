@@ -1,20 +1,59 @@
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView
+from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from .models import GeneratedPost
-from .forms import GeneratePostForm
+from .forms import GeneratePostForm, SearchFilterForm
 from .services import generate_social_post
 
 # Create your views here.
-class PostListView(ListView):
+class PostListView(LoginRequiredMixin, ListView):
     template_name = "generator/post_list.html"
     model = GeneratedPost
     context_object_name = "post_list"
     paginate_by = 10
 
     def get_queryset(self):
-        return GeneratedPost.objects.filter(user=self.request.user).order_by('-created_on')
+        queryset = GeneratedPost.objects.filter(user=self.request.user)
+
+        # Search functionality
+        search_query = self.request.GET.get('search', '')
+        if search_query:
+            queryset = queryset.filter(
+                Q(content_topic__icontains=search_query) |
+                Q(content__icontains=search_query) |
+                Q(key_points__icontains=search_query)
+            )
+
+        # Filter by platform
+        platform = self.request.GET.get('platform', '')
+        if platform:
+            queryset = queryset.filter(platform=platform)
+
+        # Filter by brand voice
+        voice = self.request.GET.get('voice', '')
+        if voice:
+            queryset = queryset.filter(brand_voice=voice)
+
+        # Filter by date range
+        date_from = self.request.GET.get('date_from', '')
+        date_to = self.request.GET.get('date_to', '')
+        if date_from:
+            queryset = queryset.filter(created_on__gte=date_from)
+        if date_to:
+            queryset = queryset.filter(created_on__lte=date_to)
+
+        # Sort functionality
+        sort_by = self.request.GET.get('sort', '-created_on')
+        queryset = queryset.order_by(sort_by)
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['search_form'] = SearchFilterForm(self.request.GET)
+        return context
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = GeneratedPost

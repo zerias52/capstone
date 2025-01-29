@@ -19,6 +19,94 @@
         </div>
     </div>
 
+    <div class="filter-section mb-4">
+        <div class="card">
+            <div class="card-body">
+                <form method="get" class="post-filter-form" id="filterForm">
+                    <div class="row g-3">
+                        <!-- Search Bar -->
+                        <div class="col-md-6">
+                            {{ search_form.search }}
+                        </div>
+
+                        <!-- Sort Dropdown -->
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-text">Sort by</span>
+                                {{ search_form.sort }}
+                            </div>
+                        </div>
+
+                        <!-- Platform Filter -->
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <span class="input-group-text">Platform</span>
+                                {{ search_form.platform }}
+                            </div>
+                        </div>
+
+                        <!-- Voice Filter -->
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <span class="input-group-text">Voice</span>
+                                {{ search_form.voice }}
+                            </div>
+                        </div>
+
+                        <!-- Date Range -->
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <span class="input-group-text">From</span>
+                                {{ search_form.date_from }}
+                                <span class="input-group-text">To</span>
+                                {{ search_form.date_to }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-3 d-flex justify-content-between">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-filter me-2"></i>Apply Filters
+                        </button>
+                        <a href="{% url 'generator:post-list' %}" class="btn btn-outline-secondary">
+                            <i class="fas fa-times me-2"></i>Clear Filters
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% if request.GET %}
+    <div class="active-filters mb-4">
+        <div class="d-flex align-items-center gap-2 flex-wrap">
+            <span class="text-muted">Active filters:</span>
+            {% if request.GET.search %}
+                <span class="badge bg-primary">Search: {{ request.GET.search }}</span>
+            {% endif %}
+            {% if request.GET.platform %}
+                <span class="badge bg-primary">Platform:
+                    {% for value, label in search_form.platform.field.choices %}
+                        {% if value == request.GET.platform %}{{ label }}{% endif %}
+                    {% endfor %}
+                </span>
+            {% endif %}
+            {% if request.GET.voice %}
+                <span class="badge bg-primary">Voice:
+                    {% for value, label in search_form.voice.field.choices %}
+                        {% if value == request.GET.voice %}{{ label }}{% endif %}
+                    {% endfor %}
+                </span>
+            {% endif %}
+            {% if request.GET.date_from or request.GET.date_to %}
+                <span class="badge bg-primary">
+                    Date: {{ request.GET.date_from|default:"Any" }} to {{ request.GET.date_to|default:"Any" }}
+                </span>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
     <!-- Posts Grid -->
     <div class="posts-grid">
         {% if post_list %}

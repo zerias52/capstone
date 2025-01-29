@@ -61,3 +61,43 @@ class GeneratePostForm(forms.ModelForm):
             'key_points': 'Key Points/Keywords',
             'post_length': 'Post Length'
         }
+
+class SearchFilterForm(forms.Form):
+    search = forms.CharField(required=False, widget=forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'Search posts...'
+    }))
+    platform = forms.ChoiceField(
+        choices=[('', 'All Platforms')] + GeneratedPost.PLATFORM_CHOICES,
+        required=False,
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    voice = forms.ChoiceField(
+        choices=[('', 'All Voices')] + GeneratedPost.VOICE_CHOICES,
+        required=False,
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    date_from = forms.DateField(
+        required=False,
+        widget=forms.DateInput(attrs={
+            'class': 'form-control',
+            'type': 'date'
+        })
+    )
+    date_to = forms.DateField(
+        required=False,
+        widget=forms.DateInput(attrs={
+            'class': 'form-control',
+            'type': 'date'
+        })
+    )
+    sort = forms.ChoiceField(
+        choices=[
+            ('-created_on', 'Newest First'),
+            ('created_on', 'Oldest First'),
+            ('content_topic', 'Topic A-Z'),
+            ('-content_topic', 'Topic Z-A'),
+        ],
+        required=False,
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
