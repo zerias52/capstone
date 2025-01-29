@@ -87,14 +87,18 @@
             {% if request.GET.platform %}
                 <span class="badge bg-primary">Platform:
                     {% for value, label in search_form.platform.field.choices %}
-                        {% if value == request.GET.platform %}{{ label }}{% endif %}
+                        {% if value == request.GET.platform %}
+                            {{ label }}
+                        {% endif %}
                     {% endfor %}
                 </span>
             {% endif %}
             {% if request.GET.voice %}
                 <span class="badge bg-primary">Voice:
                     {% for value, label in search_form.voice.field.choices %}
-                        {% if value == request.GET.voice %}{{ label }}{% endif %}
+                        {% if value == request.GET.voice %}
+                            {{ label }}
+                        {% endif %}
                     {% endfor %}
                 </span>
             {% endif %}
