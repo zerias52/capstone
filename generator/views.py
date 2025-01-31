@@ -12,7 +12,7 @@ class PostListView(LoginRequiredMixin, ListView):
     template_name = "generator/post_list.html"
     model = GeneratedPost
     context_object_name = "post_list"
-    paginate_by = 10
+    paginate_by = 9
 
     def get_queryset(self):
         queryset = GeneratedPost.objects.filter(user=self.request.user)
